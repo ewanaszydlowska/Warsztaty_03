@@ -9,21 +9,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Użytkownicy grupy ${groupId}:
+	<p>Profil uzytkownika ${user.username}</p>
+	<table border='1'>
+		<tr>
+			<th>Nazwa uzytkownika</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>${user.username}</td>
+			<td>${user.email}</td>
+		</tr>
+	</table>
+
+	Wszystkie rozwiazania uzytkownika:
 	<table border="1">
 		<tr>
-			<th>Id</th>
-			<th>Imię i nazwisko</th>
-			<th>E-mail</th>
+			<th>Numer zadania</th>
+			<th>Opis rozwiazania</th>
+			<th>Data</th>
 		</tr>
-		<c:forEach var='u' items='${users}'>
+		<c:forEach var='s' items='${sols}'>
 			<tr>
-				<td>${u.username}</td>
-				<td>${u.email}</td>
-				<td><a href="UserDetails?id=${u.id}">Szczegoly</a></td>
+				<td>${s.exerciseId}</td>
+				<td>${s.description}</td>
+				<td>${s.updated}</td>
 			</tr>
 		</c:forEach>
 	</table>
-
 </body>
 </html>
