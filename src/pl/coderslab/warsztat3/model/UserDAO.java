@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -90,26 +91,24 @@ public class UserDAO {
 		}
 	}
 	
-	public static void loadAllByGroupId(Connection conn, int id) throws SQLException {
-		ArrayList<String> members = new ArrayList<>();
-		members.add("Członkowie grupy nr " + id);
-		String sql = "SELECT username FROM users WHERE user_group_id = ?";
+	public static List<User> loadAllByGroupId(Connection conn, int id) throws SQLException {
+		List<User> members = new ArrayList<>();
+		String sql = "SELECT * FROM users WHERE user_group_id = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			String name = rs.getString("username");
-			members.add(name);
+			User u = new User();
+			u.setId(rs.getLong("id"));
+			u.setUsername(rs.getString("username"));
+			u.setEmail(rs.getString("email"));
+			u.setPassword(rs.getString("password"));
+			u.setUserGroupId(rs.getInt("user_group_id"));
+			members.add(u);
 		}
 		ps.close();
 		rs.close();
-		
-		String[] mArray = new String[members.size()];
-		mArray = members.toArray(mArray);
-		for (int i = 0; i < mArray.length; i++) {
-			System.out.println(mArray[i]);
-		}
-		
+		return members;
 	}
 	
 }
