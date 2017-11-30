@@ -3,14 +3,14 @@ package pl.coderslab.warsztat3.model;
 import java.util.Date;
 
 public class Solution {
-	
+
 	private int id;
 	private Date created;
 	private Date updated;
 	private String description;
 	private int exerciseId;
 	private long usersId;
-	
+
 	public Solution() {
 		this.id = 0;
 		this.created = null;
@@ -19,7 +19,7 @@ public class Solution {
 		this.exerciseId = 0;
 		this.usersId = 0l;
 	}
-	
+
 	public Solution(Date created, Date updated, String description) {
 		this.id = 0;
 		this.created = created;
@@ -27,6 +27,16 @@ public class Solution {
 		this.description = description;
 		this.exerciseId = 0;
 		this.usersId = 0l;
+	}
+
+	public Solution(int id, Date updated, String description, int users_id) {
+		super();
+		this.id = id;
+		this.created = null;
+		this.updated = updated;
+		this.description = description;
+		this.usersId = users_id;
+		this.exerciseId = 0;
 	}
 
 	public Date getCreated() {
@@ -76,6 +86,5 @@ public class Solution {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-}
 
+}

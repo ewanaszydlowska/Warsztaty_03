@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/fragments/header.jspf"%>
-	<table>
+	<table border='1'>
 		<tr>
 			<td>Tytul</td>
 			<td>Autor</td>
@@ -18,14 +18,13 @@
 			<td>Akcje</td>
 
 		</tr>
-		<c:forEach var="s" items="solutions">
-		<tr>
-			<td>${s.title}</td>
-			<td>${s.author}</td>
-			<td>${s.date}</td>
-			<td><a href="Solution?id=${s.id}">Szczegoly</a></td>
-
-		</tr>
+		<c:forEach var="s" items="${solutions}">
+			<tr>
+				<td>${s.solution.description}</td>
+				<td>${s.userName}</td>
+				<td>${s.solution.updated}</td>
+				<td><a href="Solution?id=${s.solution.id}">Szczegoly</a></td>
+			</tr>
 		</c:forEach>
 
 
