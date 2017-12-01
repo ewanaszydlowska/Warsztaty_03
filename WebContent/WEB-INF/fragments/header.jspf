@@ -2,4 +2,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<p><a href='Home'> Strona glowna</a>   <a href='Groups'>Grupy</a></p>
+<p><a href='Home'> Strona glowna</a>  || <a href='panel'>Panel administratora</a> ||  <a href='Groups'>Grupy</a></p>

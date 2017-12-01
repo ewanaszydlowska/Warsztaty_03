@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GroupDAO {
 
-	public void saveToDB(Connection conn, Group g) throws SQLException {
+	public static void saveToDB(Connection conn, Group g) throws SQLException {
 		if (g.getId() == 0) {
 			String sql = "INSERT INTO user_group(name) VALUES(?);";
 			String[] generatedColumns = {"id"};
@@ -64,7 +64,7 @@ public class GroupDAO {
 		return gArray;
 	}
 	
-	public void deleteGroup(Connection conn, Group g) throws SQLException {
+	public static void deleteGroup(Connection conn, Group g) throws SQLException {
 		if (g.getId() != 0) {
 			String sql = "DELETE FROM user_group WHERE id=?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
