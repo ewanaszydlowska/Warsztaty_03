@@ -14,13 +14,15 @@
 			<th colspan='3'>Uzytkownicy:</th>
 		</tr>
 		<tr>
+			<td>Numer uzytkownika</td>
 			<td>Nazwa uzytkownika</td>
-			<td>Adres e-mail</td>
+			<td>Adres email</td>
 			<td>Akcje</td>
 		</tr>
 		
 			<c:forEach var='u' items='${users}'>
 			<tr>
+				<td>${u.id}</td>
 				<td>${u.username}</td>
 				<td>${u.email}</td>
 				<td><a href="Edituser?id=${u.id}">Edytuj</a> <a href="Deleteuser?id=${u.id}">Usuń</a></td>

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDAO {
 
-	public void saveToDB(Connection conn, User u) throws SQLException {
+	public static void saveToDB(Connection conn, User u) throws SQLException {
 		if(u.getId() == 0l) {
 			String sql = "INSERT INTO users(username, email, password, user_group_id) VALUES (?, ?, ?, ?);";
 			String[] generatedColumns = {"ID"};			//jaka kolumna z bazy danych jest automatycznie generowana -> jest auto_increment
@@ -80,15 +80,12 @@ public class UserDAO {
 		return uArray;
 	}
 	
-	public void deleteUser(Connection conn, User u) throws SQLException {
-		if (u.getId() != 0) {
+	public static void deleteUser(Connection conn, int id) throws SQLException {
 			String sql = "DELETE FROM users WHERE id=?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setLong(1, u.getId());
+			ps.setLong(1, id);
 			ps.executeUpdate();
 			ps.close();
-			u.setId(0);
-		}
 	}
 	
 	public static List<User> loadAllByGroupId(Connection conn, int id) throws SQLException {
