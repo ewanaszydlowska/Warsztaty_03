@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ExerciseDAO {
 
-	public void saveToDB(Connection conn, Exercise e) throws SQLException {
+	public static void saveToDB(Connection conn, Exercise e) throws SQLException {
 		if (e.getId() == 0) {
 			String sql = "INSERT INTO exercise(name, description) VALUES (?, ?);";
 			String[] generatedColumns = { "id" };
@@ -70,16 +70,12 @@ public class ExerciseDAO {
 		return eArray;
 	}
 
-	public void deleteExercise(Connection conn, Exercise e) throws SQLException {
-		if (e.getId() != 0) {
+	public static void deleteExercise(Connection conn, int id) throws SQLException {
 			String sql = "DELETE FROM exercise WHERE id=?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, e.getId());
+			ps.setInt(1, id);
 			ps.executeUpdate();
 			ps.close();
-			e.setId(0);
-		}
-
 	}
 
 	public static List<Solution> loadAllByUserId(java.sql.Connection conn, long id) throws SQLException {

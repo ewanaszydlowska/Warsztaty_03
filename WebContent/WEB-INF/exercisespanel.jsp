@@ -9,24 +9,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="Adduser">Dodaj nowego uzytkownika</a>
+	<a href="Addexercise">Dodaj nowe zadanie</a>
 	<table border='1'>
 		<tr>
-			<th colspan='4'>Uzytkownicy:</th>
+			<th colspan='4'>Zadania:</th>
 		</tr>
 		<tr>
-			<td>Id uzytkownika</td>
-			<td>Nazwa uzytkownika</td>
-			<td>Adres e-mail</td>
+			<td>Numer zadania</td>
+			<td>Nazwa zadania</td>
+			<td>Opis</td>
 			<td>Akcje</td>
 		</tr>
 		
-			<c:forEach var='u' items='${users}'>
+			<c:forEach var='e' items='${exercises}'>
 			<tr>
-				<td>${u.id}</td>
-				<td>${u.username}</td>
-				<td>${u.email}</td>
-				<td><a href="Edituser?id=${u.id}">Edytuj</a> <a href="Deleteuser?id=${u.id}">Usuń</a></td>
+				<td>${e.id}</td>
+				<td>${e.name}</td>
+				<td>${e.description}</td>
+				<td><a href="Editexercise?id=${e.id}">Edytuj</a> <a href="Deleteexercise?id=${e.id}">Usuń</a></td>
 
 	</tr>
 			</c:forEach>

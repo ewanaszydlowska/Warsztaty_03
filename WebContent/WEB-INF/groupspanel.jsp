@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border='1'>
 	<a href="Addgroup">Dodaj nowa grupe</a>
+	<table border='1'>
 		<tr>
 			<th colspan='3'>Grupy:</th>
 		</tr>
@@ -19,17 +19,18 @@
 			<td>Nazwa grupy</td>
 			<td>Akcje</td>
 		</tr>
-		
-			<c:forEach var='g' items='${groups}'>
+
+		<c:forEach var='g' items='${groups}'>
 			<tr>
 				<td>${g.id}</td>
 				<td>${g.name}</td>
-				<td><a href="Editgroup?id=${g.id}">Edytuj</a> <a href="Deletegroup?id=${g.id}">Usuń</a></td>
+				<td><a href="Editgroup?id=${g.id}">Edytuj</a> <a
+					href="Deletegroup?id=${g.id}">Usuń</a></td>
 
-	</tr>
-			</c:forEach>
+			</tr>
+		</c:forEach>
 
-	
+
 	</table>
 </body>
 </html>

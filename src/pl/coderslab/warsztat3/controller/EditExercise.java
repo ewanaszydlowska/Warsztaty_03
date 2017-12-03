@@ -15,16 +15,16 @@ import pl.coderslab.warsztat3.model.Exercise;
 import pl.coderslab.warsztat3.model.ExerciseDAO;
 
 /**
- * Servlet implementation class PanelExercise
+ * Servlet implementation class EditExercise
  */
-@WebServlet("/exercises")
-public class PanelExercise extends HttpServlet {
+@WebServlet("/Editexercise")
+public class EditExercise extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PanelExercise() {
+    public EditExercise() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +33,29 @@ public class PanelExercise extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			Connection conn = DBUtil.getConn();
-			Exercise[] exercises = ExerciseDAO.loadAllExercises(conn); 
-			request.setAttribute("exercises", exercises);
-			getServletContext().getRequestDispatcher("/WEB-INF/exercisespanel.jsp").forward(request, response);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		int exeId = Integer.parseInt(request.getParameter("id"));
+		 request.setAttribute("id", exeId);
+		 getServletContext().getRequestDispatcher("/WEB-INF/editexercise.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int exeId = Integer.parseInt(request.getParameter("id"));
+		String exeName = request.getParameter("exe-name");
+		String exeDesc = request.getParameter("exe-desc");
+		try {
+			Connection conn = DBUtil.getConn();
+			Exercise exercise = new Exercise(exeName, exeDesc);
+			exercise.setId(exeId);
+			ExerciseDAO.saveToDB(conn, exercise);
+			conn.close();
+			response.sendRedirect("exercises");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
