@@ -33,7 +33,7 @@ public class Addgroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/WEB-INF/addgroup.jsp");
+		request.getServletContext().getRequestDispatcher("/WEB-INF/addgroup.jsp").forward(request, response);
 	}
 
 	/**

@@ -22,9 +22,10 @@ public class GroupDAO {
 			ps.close();
 			rs.close();
 		} else {
-			String sql = "UPDATE user_group SET name=?;";
+			String sql = "UPDATE user_group SET name=? WHERE id=?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, g.getName());
+			ps.setInt(2, g.getId());
 			ps.executeUpdate();
 			ps.close();
 		}
@@ -64,15 +65,12 @@ public class GroupDAO {
 		return gArray;
 	}
 	
-	public static void deleteGroup(Connection conn, Group g) throws SQLException {
-		if (g.getId() != 0) {
+	public static void deleteGroup(Connection conn, int id) throws SQLException {
 			String sql = "DELETE FROM user_group WHERE id=?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, g.getId());
+			ps.setInt(1, id);
 			ps.executeUpdate();
 			ps.close();
-			g.setId(0);
-		}
 	}
 	
 }

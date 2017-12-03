@@ -17,7 +17,7 @@ import pl.coderslab.warsztat3.model.GroupDAO;
 /**
  * Servlet implementation class DeleteGroup
  */
-@WebServlet("/DeleteGroup")
+@WebServlet("/Deletegroup")
 public class DeleteGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,9 +38,11 @@ public class DeleteGroup extends HttpServlet {
 		Connection conn;
 		try {
 			conn = DBUtil.getConn();
-			Group group = GroupDAO.loadGroupById(conn, groupId);
-			GroupDAO.deleteGroup(conn, group);
-			response.sendRedirect("groups");
+			GroupDAO.deleteGroup(conn, groupId);
+			Group[] groups = GroupDAO.loadAllGroups(conn);
+			conn.close();
+			request.setAttribute("groups", groups);
+			getServletContext().getRequestDispatcher("/WEB-INF/groupspanel.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

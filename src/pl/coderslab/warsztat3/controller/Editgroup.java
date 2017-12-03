@@ -52,6 +52,7 @@ public class Editgroup extends HttpServlet {
 			g.setId(groupId);
 			
 			GroupDAO.saveToDB(conn, g);
+			conn.close();
 			response.sendRedirect("groups");
 			
 		} catch (SQLException e) {
